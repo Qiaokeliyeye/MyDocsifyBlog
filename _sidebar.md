@@ -12,3 +12,7 @@
   	* [Redis基础](Java/Redis/Redis基础.md)
   * [面试](Java/面试/)
     * [Java基础面试题](Java/面试/Java基础面试题.md)
+  * [踩坑日记](Java/踩坑日记/)
+    * [Gradle配置问题](Java/踩坑日记/Gradle配置问题/)
+      * [更改阿里云镜像仓库后的问题](Java/踩坑日记/Gradle配置问题/更改阿里云镜像仓库后的问题.md)
+      * [更换gradle阿里云镜像地址](Java/踩坑日记/Gradle配置问题/更换gradle阿里云镜像地址.md)

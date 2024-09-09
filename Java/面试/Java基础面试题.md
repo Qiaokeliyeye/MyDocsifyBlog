@@ -65,7 +65,7 @@ public static Integer valueOf(int i) {
     public static int sum(int a, int b) {
         return a + b;
     }
-    
+
     public static double sum(double a, double b) {
         return a + b;
     }
@@ -120,7 +120,7 @@ char[] value;</code></pre><ul class="ne-ul" style="margin: 0; padding-left: 23px
         super.append(lng);
         return this;
     }
-
+    
     @Override
     public synchronized StringBuffer append(float f) {
         toStringCache = null;
@@ -137,7 +137,7 @@ char[] value;</code></pre><ul class="ne-ul" style="margin: 0; padding-left: 23px
         super.append(lng);
         return this;
     }
-
+    
     @Override
     public StringBuilder append(float f) {
         super.append(f);
@@ -293,7 +293,7 @@ public class Main {
             System.out.println("StaticVar from inner class: " + staticVar);
         }
     }
-
+    
     public void createInnerClass() {
         // 不需要创建OuterClass实例，但是可以直接创建StaticInnerClass实例，并且使用它访问外部类的静态成员
         StaticInnerClass staticInnerClass = new StaticInnerClass();
@@ -396,19 +396,21 @@ public class SerializationTest {
         Person person = new Person("John", 30);
         System.out.println("序列化前: " + person);
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.dat"))) {
-            oos.writeObject(person);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.dat"))) {
-            Person restoredPerson = (Person) ois.readObject();
-            System.out.println("序列化后: " + restoredPerson);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+```Java
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.dat"))) {
+        oos.writeObject(person);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.dat"))) {
+        Person restoredPerson = (Person) ois.readObject();
+        System.out.println("序列化后: " + restoredPerson);
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+}
+```
 }</code></pre><ul class="ne-ul" style="margin: 0; padding-left: 23px"><li id="uec904b7c" data-lake-index-type="0"><span class="ne-text" style="color: rgb(76, 73, 72)">在上面的代码中，我们创建了一个</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">Person</span><span class="ne-text" style="color: rgb(76, 73, 72)">对象，并将其序列化到文件</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">person.dat</span><span class="ne-text" style="color: rgb(76, 73, 72)">中，然后再从文件中反序列化得到一个新的</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">Person</span><span class="ne-text" style="color: rgb(76, 73, 72)">对象，运行结果如下</span></li></ul><pre data-language="java" id="K282v" class="ne-codeblock language-java" style="border: 1px solid #e8e8e8; border-radius: 2px; background: #f9f9f9; padding: 16px; font-size: 13px; color: #595959"><code>序列化前：Person [name=John, age=30]
 序列化后：Person [name=John, age=0]</code></pre><ul class="ne-ul" style="margin: 0; padding-left: 23px"><li id="u4df4641d" data-lake-index-type="0"><span class="ne-text" style="color: rgb(76, 73, 72)">需要注意的是：使用</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">transient</span><span class="ne-text" style="color: rgb(76, 73, 72)">修饰的字段</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">不能</span><span class="ne-text" style="color: rgb(76, 73, 72)">是</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">static</span><span class="ne-text" style="color: rgb(76, 73, 72)">或</span><span class="ne-text" style="color: rgb(244, 116, 102); font-size: 14px">final</span><span class="ne-text" style="color: rgb(76, 73, 72)">修饰的</span></li></ul></details>
 
